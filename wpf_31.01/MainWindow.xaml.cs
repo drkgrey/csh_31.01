@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+
+
 
 namespace wpf_31._01
 {
@@ -20,13 +24,14 @@ namespace wpf_31._01
     /// </summary>
     public partial class MainWindow : Window
     {
-        internal static List<Department> listOfDeps { get; set; }
+        private ObservableCollection<Department> _listOfDeps;
+
+        internal ObservableCollection<Department> ListOfDeps { get => _listOfDeps; set => _listOfDeps = value; }
         public MainWindow()
         {
             InitializeComponent();
             CreateDeps();
-            UpdateInfo();
-            
+            DepsList.ItemsSource = ListOfDeps;
         }
         public void CreateDeps()
         {
@@ -38,56 +43,49 @@ namespace wpf_31._01
             dep3.CreateList(4);
             Department dep4 = new Department("department4");
             dep4.CreateList(2);
-            listOfDeps = new List<Department>() { dep1, dep2, dep3, dep4 };
+            ListOfDeps = new ObservableCollection<Department>() { dep1, dep2, dep3, dep4 };
+            var gridView = new GridView();
+            EmployeeList.View = gridView;
+            gridView.Columns.Add(new GridViewColumn { Header = "Имя", Width = 80, DisplayMemberBinding = new Binding("Name") });
+            gridView.Columns.Add(new GridViewColumn { Header = "Фамилия", Width=120, DisplayMemberBinding = new Binding("Lastname") });
+            gridView.Columns.Add(new GridViewColumn { Header = "Департамент", Width=120, DisplayMemberBinding = new Binding("Dep") });
+
         }
 
         private void DepartsButton_Click(object sender, RoutedEventArgs e)
         {
-            ChangeDepartmentWindow changeDepartmentWindow = new ChangeDepartmentWindow();
-            changeDepartmentWindow.Owner = this;
-            changeDepartmentWindow.ShowDialog();
-
+            ChangeDepartmentWindow changeDepartmentWindow = new ChangeDepartmentWindow(ListOfDeps) { Owner= this
+        };
+            changeDepartmentWindow.Show();
+            
         }
 
         private void ShowEmployeesListButton_Click(object sender, RoutedEventArgs e)
         {
             EmployeeList.Items.Clear();
-            var gridView = new GridView();
-            EmployeeList.View = gridView;
-            gridView.Columns.Add(new GridViewColumn { Header = "Имя", DisplayMemberBinding = new Binding("name") });
-            gridView.Columns.Add(new GridViewColumn { Header = "Фамилия", DisplayMemberBinding = new Binding("lastName") });
-            gridView.Columns.Add(new GridViewColumn { Header = "Департамент", DisplayMemberBinding = new Binding("dep") });
             if (DepsList.SelectedIndex != -1)
             {
-                var currentDep = listOfDeps.ElementAt(DepsList.SelectedIndex);
-                foreach (var ob in currentDep.listOfEmployees)
+                var currentDep = ListOfDeps.ElementAt(DepsList.SelectedIndex);
+                foreach (var ob in currentDep.ListOfEmployees)
                 {
                     EmployeeList.Items.Add(ob);
                 }
             }
-            DepsList.SelectedIndex = -1;
-        }
-        public void UpdateInfo()
-        {
-            DepsList.Items.Clear();
-            foreach (var ob in listOfDeps) DepsList.Items.Add(ob.name);
-        }
-
-        private void DepsList_DropDownOpened(object sender, EventArgs e)
-        {
-            UpdateInfo();
         }
 
         private void EmployeesButton_Click(object sender, RoutedEventArgs e)
         {
-            ChangeEmployeeWindow changeEmployeeWindow = new ChangeEmployeeWindow();
+            ChangeEmployeeWindow changeEmployeeWindow = new ChangeEmployeeWindow(ListOfDeps);
+            changeEmployeeWindow.Owner = this;
             changeEmployeeWindow.ShowDialog();
         }
 
         private void AddEmployee_Click(object sender, RoutedEventArgs e)
         {
-            CreateEmployee createEmployee = new CreateEmployee();
+            CreateEmployee createEmployee = new CreateEmployee(ListOfDeps);
+            createEmployee.Owner = this;
             createEmployee.ShowDialog();
         }
+
     }
 }

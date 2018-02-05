@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 
 namespace wpf_31._01
 {
@@ -19,26 +9,23 @@ namespace wpf_31._01
     /// </summary>
     public partial class ChangeDepartmentWindow : Window
     {
-        public ChangeDepartmentWindow()
+        internal ChangeDepartmentWindow(ObservableCollection<Department> ListOfDeps)
         {
             InitializeComponent();
-            UpdateInfo();
+            DepartsComboBox.ItemsSource = ListOfDeps;
         }
 
         private void ChangeNameButton_Click(object sender, RoutedEventArgs e)
         {
             if (DepartsComboBox.SelectedIndex != -1 && NewDepNameTextBox.Text != "")
             {
-                MainWindow.listOfDeps.ElementAt(DepartsComboBox.SelectedIndex).name = NewDepNameTextBox.Text;
-                UpdateInfo();
+                MainWindow window = (MainWindow)Owner;
+                window.ListOfDeps[DepartsComboBox.SelectedIndex].Name = NewDepNameTextBox.Text;
+                DepartsComboBox.Items.Refresh();
+                DepartsComboBox.SelectedIndex = -1;
                 NewDepNameTextBox.Text = "";
             }
             else MessageBox.Show("неверные данные");
-        }
-        public void UpdateInfo()
-        {
-            DepartsComboBox.Items.Clear();
-            foreach (var ob in MainWindow.listOfDeps) DepartsComboBox.Items.Add(ob.name);
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
@@ -49,14 +36,8 @@ namespace wpf_31._01
         private void CreateNewDep_Click_1(object sender, RoutedEventArgs e)
         {
             CreateDepartment createDepartment = new CreateDepartment();
-            createDepartment.Owner = this;
+            createDepartment.Owner = (MainWindow)Owner;
             createDepartment.ShowDialog();
         }
-
-        private void DepartsComboBox_DropDownOpened(object sender, EventArgs e)
-        {
-            UpdateInfo();
-        }
-
     }
 }

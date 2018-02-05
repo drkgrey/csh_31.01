@@ -26,18 +26,14 @@ namespace wpf_31._01
 
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
-            if (NameBox.Text != "") MainWindow.listOfDeps.Add(new Department(NameBox.Text)); else MessageBox.Show("не указано имя");
+            MainWindow window = (MainWindow)Owner;
+            if (NameBox.Text != "") window.ListOfDeps.Add(new Department(NameBox.Text)); else MessageBox.Show("не указано имя");
             Close();
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            
         }
     }
 }

@@ -6,10 +6,11 @@
         xmlns:local="clr-namespace:wpf_31._01"
         xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="wpf_31._01.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="380" Width="568.333">
+        Title="MainWindow" Height="380" Width="625.394">
+   
     <Grid>
         <Button x:Name="DepartsButton" Content="Департаменты" HorizontalAlignment="Left" Margin="10,206,0,0" VerticalAlignment="Top" Width="91" Click="DepartsButton_Click"/>
-        <ListView Name="EmployeeList" HorizontalAlignment="Left" Height="273" Margin="220,49,0,0" VerticalAlignment="Top" Width="311">
+        <ListView  Name="EmployeeList" HorizontalAlignment="Left" Height="273" Margin="220,49,0,0" VerticalAlignment="Top" Width="374">
             <ListView.View>
                 <GridView/>
             </ListView.View>
@@ -18,7 +19,7 @@
         <Label Content="Список сотрудников" HorizontalAlignment="Left" Margin="226,18,0,0" VerticalAlignment="Top"/>
         <Button Name="ShowEmployeesListButton" Content="Показать сотрудников" HorizontalAlignment="Left" Margin="10,168,0,0" VerticalAlignment="Top" Width="132" Click="ShowEmployeesListButton_Click"/>
         <Button x:Name="EmployeesButton" Content="Сотрудники" HorizontalAlignment="Left" Margin="10,243,0,0" VerticalAlignment="Top" Width="75" Click="EmployeesButton_Click"/>
-        <ComboBox x:Name="DepsList" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Width="120" DropDownOpened="DepsList_DropDownOpened"/>
+        <ComboBox  x:Name="DepsList" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="AddEmployee" Content="Новый сотрудник" HorizontalAlignment="Left" Margin="10,281,0,0" VerticalAlignment="Top" Width="120" Click="AddEmployee_Click"/>
 
     </Grid>

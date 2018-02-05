@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wpf_31._01"
         mc:Ignorable="d"
-        Title="CreateDepartment" Height="145.714" Width="302.381" Closing="Window_Closing">
+        Title="CreateDepartment" Height="145.714" Width="302.381">
     <Grid Margin="15,0,13,8">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

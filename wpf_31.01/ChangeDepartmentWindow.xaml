@@ -14,7 +14,7 @@
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <ComboBox x:Name="DepartsComboBox" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top" Width="199" IsEnabled="True" Height="22" DropDownOpened="DepartsComboBox_DropDownOpened"/>
+        <ComboBox x:Name="DepartsComboBox" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top" Width="199" IsEnabled="True" Height="22"/>
         <Label Content="Выберите департамент" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="26" Width="138"/>
         <Button x:Name="ChangeNameButton" Content="Изменить название департамента" HorizontalAlignment="Left" Margin="10,222,0,0" VerticalAlignment="Top" Width="195" Click="ChangeNameButton_Click" Height="22"/>
         <TextBox x:Name="NewDepNameTextBox" HorizontalAlignment="Left" Height="23" Margin="10,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="195"/>
