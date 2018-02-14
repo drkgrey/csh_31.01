@@ -1,0 +1,35 @@
+﻿<Window x:Class="WebClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WebClient"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="470" Width="525">
+    <Grid>
+        <ListView x:Name="DepartsListView" HorizontalAlignment="Left" Height="220" Margin="10,10,0,0" VerticalAlignment="Top" Width="186" MouseDoubleClick="DepartsListView_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding DepartmentName}" Header="DepartName"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="EmployeeListView" HorizontalAlignment="Left" Height="220" Margin="201,10,0,0" VerticalAlignment="Top" Width="306">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Name}" Header="Name"/>
+                    <GridViewColumn Width="100" DisplayMemberBinding="{Binding Lastname}" Header="Lastname"/>
+                    <GridViewColumn Width="30" DisplayMemberBinding="{Binding DepartmentId}" Header="Dep"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="GetButton" Content="download" HorizontalAlignment="Left" Margin="10,235,0,0" VerticalAlignment="Top" Width="75" Click="GetButton_Click"/>
+        <Button x:Name="SelectedEmpButton" Content="поиск сотрудника" HorizontalAlignment="Left" Margin="244,377,0,0" VerticalAlignment="Top" Width="112" Height="26" Click="SelectedEmpButton_Click"/>
+        <Button x:Name="SelectedDepartButton" Content="Поиск департамента" HorizontalAlignment="Left" Margin="10,377,0,0" VerticalAlignment="Top" Width="108" Height="26" FontSize="10" Click="SelectedDepartButton_Click"/>
+        <TextBox x:Name="SelectedDepTextBox" HorizontalAlignment="Left" Height="23" Margin="10,349,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="введите id или имя" HorizontalAlignment="Left" Margin="10,318,0,0" VerticalAlignment="Top"/>
+        <Label Content="введите имя или фамилию" HorizontalAlignment="Left" Margin="349,331,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="EmpSearchTextBox" HorizontalAlignment="Left" Height="23" Margin="387,377,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
+    </Grid>
+</Window>
